@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Encrypt / Decrypt Files</h2>
+
+  <div class="card">
+    <form action="{{ url_for('encrypt_file') }}" method="post" enctype="multipart/form-data">
+      <h3>Encrypt</h3>
+      <label>File:
+        <input type="file" name="file" required>
+      </label>
+      <label>Algorithm:
+        <select name="algorithm" id="enc-algo" required>
+          <option value="hybrid">Hybrid</option>
+          <option value="kyber">Kyber</option>
+          <option value="ntru">NTRU</option>
+        </select>
+      </label>
+      <div id="enc-params">
+        <div data-algo="kyber" class="params-group" style="display:none;">
+          <label>n:
+            <input type="number" name="n" value="32" min="1" required>
+          </label>
+          <label>q:
+            <input type="number" name="q" value="3329" min="2" required>
+          </label>
+          <label>k:
+            <input type="number" name="k" value="3" min="1" required>
+          </label>
+        </div>
+        <div data-algo="ntru" class="params-group" style="display:none;">
+          <label>N:
+            <input type="number" name="N" value="701" min="1" required>
+          </label>
+          <label>q:
+            <input type="number" name="q" value="4096" min="2" required>
+          </label>
+          <label>p:
+            <input type="number" name="p" value="3" min="2" required>
+          </label>
+        </div>
+      </div>
+      <button type="submit">Encrypt</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <form action="{{ url_for('decrypt_file') }}" method="post" enctype="multipart/form-data">
+      <h3>Decrypt</h3>
+      <label>File:
+        <input type="file" name="file" required>
+      </label>
+      <label>Algorithm:
+        <select name="algorithm" id="dec-algo" required>
+          <option value="hybrid">Hybrid</option>
+          <option value="kyber">Kyber</option>
+          <option value="ntru">NTRU</option>
+        </select>
+      </label>
+      <div id="dec-params">
+        <div data-algo="kyber" class="params-group" style="display:none;">
+          <label>n:
+            <input type="number" name="n" value="32" min="1" required>
+          </label>
+          <label>q:
+            <input type="number" name="q" value="3329" min="2" required>
+          </label>
+          <label>k:
+            <input type="number" name="k" value="3" min="1" required>
+          </label>
+        </div>
+        <div data-algo="ntru" class="params-group" style="display:none;">
+          <label>N:
+            <input type="number" name="N" value="701" min="1" required>
+          </label>
+          <label>q:
+            <input type="number" name="q" value="4096" min="2" required>
+          </label>
+          <label>p:
+            <input type="number" name="p" value="3" min="2" required>
+          </label>
+        </div>
+      </div>
+      <button type="submit">Decrypt</button>
+    </form>
+  </div>
+{% endblock %}

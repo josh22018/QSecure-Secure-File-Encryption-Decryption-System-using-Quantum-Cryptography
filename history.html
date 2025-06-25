@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>History</h2>
+  <table>
+    <thead><tr><th>Action</th><th>Algo</th><th>File</th><th>Time</th></tr></thead>
+    <tbody>
+      {% for r in records %}
+      <tr>
+        <td>{{ r.action }}</td>
+        <td>{{ r.algorithm }}</td>
+        <td>{{ r.filename }}</td>
+        <td>{{ r.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

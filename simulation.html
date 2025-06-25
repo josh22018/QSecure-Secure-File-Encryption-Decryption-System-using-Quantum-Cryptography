@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Search Algorithm Comparison</h2>
+  <div class="simulation-grid">
+    <div class="card">
+      <h3>File-Based Simulation</h3>
+      {% if session.last_file_size %}
+        <p>Last file size: {{ session.last_file_size }} bytes</p>
+        <input type="hidden" id="file-N"    value="{{ session.last_file_size }}">
+        <input type="hidden" id="file-target" value="{{ session.last_file_size//2 }}">
+        <p id="file-result-classical">Classical steps: —</p>
+        <p id="file-result-grover">Quantum iterations: —</p>
+        <div class="chart-container"><canvas id="file-chart"></canvas></div>
+      {% else %}
+        <p><em>No file encrypted/decrypted yet.</em></p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h3>Manual Simulation</h3>
+      <label>Array size N:
+        <input type="number" id="manual-size" value="100" min="1">
+      </label>
+      <label>Target index:
+        <input type="number" id="manual-target" value="0" min="0">
+      </label>
+      <button id="btn-manual-compare">Compare</button>
+      <p id="manual-result-classical">Classical steps: —</p>
+      <p id="manual-result-grover">Quantum iterations: —</p>
+      <div class="chart-container"><canvas id="manual-chart"></canvas></div>
+    </div>
+  </div>
+{% endblock %}
